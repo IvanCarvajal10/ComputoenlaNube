@@ -17,20 +17,15 @@ int main()
     std::cout << "Sumando Arreglos en Paralelo!\n";
     float a[N], b[N], c[N];
     int i;
-
+    
     srand(time(0));
+
     for (i = 0; i < N; i++)
     {
         a[i] = static_cast<float>(rand() % 100);
         b[i] = static_cast<float>(rand() % 100);
     }
-
-//    for (i = 0; i < N; i++)
-//    {
-//        a[i] = i * 10;
-//        b[i] = (i + 3) * 3.7;
-//    }
-
+            
     int pedazos = chunk;
 
     #pragma omp parallel for \
@@ -40,13 +35,14 @@ int main()
     for (i = 0; i < N; i++)
         c[i] = a[i] + b[i];
 
-
     std::cout << "Imprimiendo los primeros " << mostrar << " valores del arreglo a: " << std::endl;
     imprimeArreglo(a);
     std::cout << "Imprimiendo los primeros " << mostrar << " valores del arreglo b: " << std::endl;
     imprimeArreglo(b);
     std::cout << "Imprimiendo los primeros " << mostrar << " valores del arreglo c: " << std::endl;
     imprimeArreglo(c);
+
+    return (0);
 }
 
 void imprimeArreglo(float* d)
